@@ -1,0 +1,3 @@
+rootProject.name = "taxiao_library"
+include ':commonLibrary'
+include ':app'

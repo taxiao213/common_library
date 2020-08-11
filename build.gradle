@@ -1,0 +1,25 @@
+apply from: "config.gradle"
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "$REPOSITORIES_ALIYUN" }
+    }
+    dependencies {
+        classpath "com.android.tools.build:gradle:$BUILD_GRADLE_VERSION"
+    }
+}
+
+allprojects {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+        maven { url "$REPOSITORIES_ALIYUN" }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

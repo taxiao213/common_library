@@ -1,0 +1,104 @@
+ext {
+    // Sdk and tools
+    minSdkVersion = 23
+    targetSdkVersion = 28
+    compileSdkVersion = 28
+    buildToolsVersion = '28.0.0'
+    versionCode = 1
+    versionName = '1.0.0'
+    applicationId = 'com.taxiao.cn'
+    junitVersion = '4.12'
+    junitAndroidXVersion = '1.1.1'
+    espressoCoreAndroidXVersion = '3.2.0'
+
+    // androidx dependencies
+    androidxAppcompatVersion = '1.1.0'
+    androidxConstraintLayoutVersion = '1.1.3'
+    androidxViewpager2Version = '1.0.0'
+    androidxRecyclerviewVersion = androidxAppcompatVersion
+    androidxSwiperefreshlayoutVersion = androidxAppcompatVersion
+    androidXmaterialVersion = androidxAppcompatVersion
+    cameraxVersion = "1.0.0-beta04"
+    cameraxViewVersion = "1.0.0-alpha10"
+
+    // NetWork
+    // adapter-rxjava2 不支持 rxjava3
+    okhttp3Version = '4.7.2'
+    retrofit2Version = '2.9.0'
+    rxjava2Version = '2.2.19'
+    rxjava2AndroidVersion = '2.1.1'
+
+    // View
+    butterknifeVersion = BUTTER_KNIFE_VERSION
+    glideVersion = '4.11.0'
+    gsonVersion = '2.8.6'
+    smartRefreshVersion = '2.0.1'
+
+    // Permission
+    xxpermissionsVersion = '5.0'
+
+    // bugly
+    buglyVersion = 'latest.release'
+
+
+    // androidx 以下版本
+    // common dependencies
+    androidCommonAppcompatVersion = '28.0.0'
+    // view
+    glideCommonVersion = '4.8.0'
+    butterknifeCommonVersion = '9.0.0-SNAPSHOT'
+
+    androidx_dependencies = [
+            "appcompat"              : "androidx.appcompat:appcompat:$androidxAppcompatVersion",
+            "constraintLayout"       : "androidx.constraintlayout:constraintlayout:$androidxConstraintLayoutVersion",
+            "recyclerview"           : "androidx.recyclerview:recyclerview:$androidxRecyclerviewVersion",
+            "swiperefreshlayout"     : "androidx.swiperefreshlayout:swiperefreshlayout:$androidxSwiperefreshlayoutVersion",
+            "viewpager2"             : "androidx.viewpager2:viewpager2:$androidxViewpager2Version",
+            "material"               : "com.google.android.material:material:$androidXmaterialVersion",
+            "butterknife"            : "com.jakewharton:butterknife:$butterknifeVersion",
+            "glide"                  : "com.github.bumptech.glide:glide:$glideVersion",
+            "okhttp3"                : "com.squareup.okhttp3:okhttp:$okhttp3Version",
+            "retrofit2"              : "com.squareup.retrofit2:retrofit:$retrofit2Version",
+            "converter_gson"         : "com.squareup.retrofit2:converter-gson:$retrofit2Version",
+            "adapter_rxjava2"        : "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version",
+            "rxjava2"                : "io.reactivex.rxjava2:rxjava:$rxjava2Version",
+            "rxandroid"              : "io.reactivex.rxjava2:rxandroid:$rxjava2AndroidVersion",
+            "gson"                   : "com.google.code.gson:gson:$gsonVersion",
+            "permissions"            : "com.hjq:xxpermissions:$xxpermissionsVersion",
+            "refresh-layout-kernel"  : "com.scwang.smart:refresh-layout-kernel:$smartRefreshVersion",
+            "refresh-header-classics": "com.scwang.smart:refresh-header-classics:$smartRefreshVersion",
+            "refresh-footer-classics": "com.scwang.smart:refresh-footer-classics:$smartRefreshVersion",
+            "camera_camera2"         : "androidx.camera:camera-camera2:$cameraxVersion",
+            "camera_lifecycle"       : "androidx.camera:camera-lifecycle:$cameraxVersion",
+            "camera_view"            : "androidx.camera:camera-view:$cameraxViewVersion"
+    ]
+
+    commonDependencies = [
+            "appcompat-v7"           : "com.android.support:appcompat-v7:$androidCommonAppcompatVersion",
+            "appcompat-v4"           : "com.android.support:support-v4:$androidCommonAppcompatVersion",
+            "recyclerview"           : "com.android.support:recyclerview-v7:$androidCommonAppcompatVersion",
+            "design"                 : "com.android.support:design:$androidCommonAppcompatVersion",
+            "glide"                  : "com.github.bumptech.glide:glide:$glideCommonVersion",
+            "okhttp3"                : "com.squareup.okhttp3:okhttp:$okhttp3Version",
+            "retrofit2"              : "com.squareup.retrofit2:retrofit:$retrofit2Version",
+            "converter_gson"         : "com.squareup.retrofit2:converter-gson:$retrofit2Version",
+            "adapter_rxjava2"        : "com.squareup.retrofit2:adapter-rxjava2:$retrofit2Version",
+            "rxjava2"                : "io.reactivex.rxjava2:rxjava:$rxjava2Version",
+            "rxandroid"              : "io.reactivex.rxjava2:rxandroid:$rxjava2AndroidVersion",
+            "gson"                   : "com.google.code.gson:gson:$gsonVersion",
+            "permissions"            : "com.hjq:xxpermissions:$xxpermissionsVersion",
+            "refresh-layout-kernel"  : "com.scwang.smart:refresh-layout-kernel:$smartRefreshVersion",
+            "refresh-header-classics": "com.scwang.smart:refresh-header-classics:$smartRefreshVersion",
+            "refresh-footer-classics": "com.scwang.smart:refresh-footer-classics:$smartRefreshVersion",
+            'junit'                  : "junit:junit:$junitVersion",
+            'bugly_crash'            : "com.tencent.bugly:crashreport:$buglyVersion",
+            'bugly_nativecrash'      : "com.tencent.bugly:nativecrashreport:$buglyVersion",
+    ]
+
+    annotationProcessor = [
+            "glide": "com.github.bumptech.glide:compiler:$rootProject.glideCommonVersion"
+    ]
+
+    // 包名，用于存放APT生成的类文件
+    packageNameForAPT = applicationId + ".apt"
+}
