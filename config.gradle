@@ -40,6 +40,26 @@ ext {
     // bugly
     buglyVersion = 'latest.release'
 
+    // jcenter push config
+    bintray_userOrg = 'yin13753884368'// 用户名
+    bintray_repoName = 'taxiao'// 远程仓库名称
+    bintray_groupId = 'com.taxiao.library'// groupId 名称
+    bintray_artifactId = 'common-library'// 项目名称
+    bintray_publishVersion = versionName// 版本号
+    bintray_project_desc = 'Android Dependent library MVP'// 项目描述
+    bintray_version_desc = 'version 1.0.0'// 项目描述
+    bintray_website = 'https://github.com/taxiao213/common_library'// 项目主页
+    bintray_gitUrl = 'https://github.com/taxiao213/common_library.git'// Git仓库的地址
+    bintray_issueTrackerUrl = 'https://github.com/taxiao213/common_library/issues'// issues地址
+    bintray_labels = ["Tools", "Library", "Java", "Android"]// 标签
+    bintray_licenses = ["Apache-2.0"] // 协议
+    bintray_attributes = ['gradle-plugin': 'com.use.less:com.use.less.gradle:gradle-useless-plugin']
+    bintray_packaging = 'aar'
+
+    // developer info
+    bintray_developer_id = 'taxiao'// 开发者 id
+    bintray_developer_name = 'taxiao'// 开发者姓名
+    bintray_developer_email = 'yin13753884368@163.com'// 开发者邮箱
 
     // androidx 以下版本
     // common dependencies

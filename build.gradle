@@ -8,6 +8,11 @@ buildscript {
     }
     dependencies {
         classpath "com.android.tools.build:gradle:$BUILD_GRADLE_VERSION"
+        // Gradle Android Maven plugin
+        classpath "com.github.dcendents:android-maven-gradle-plugin:$MAVEN_GRADLE_PLUGIN"
+        // Gradle Bintray Plugin
+        classpath "com.jfrog.bintray.gradle:gradle-bintray-plugin:$BINTRAY_PLUGIN"
+
     }
 }
 
@@ -17,6 +22,23 @@ allprojects {
         jcenter()
         mavenCentral()
         maven { url "$REPOSITORIES_ALIYUN" }
+    }
+}
+
+allprojects {
+    tasks.withType(Javadoc) {
+        options.addStringOption('Xdoclint:none', '-quiet')
+        options.addStringOption('encoding', 'UTF-8')
+    }
+}
+
+allprojects {
+    tasks.withType(Javadoc) {
+        options {
+            encoding "UTF-8"
+            charSet 'UTF-8'
+            links "http://docs.oracle.com/javase/7/docs/api"
+        }
     }
 }
 

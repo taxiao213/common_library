@@ -1,0 +1,131 @@
+apply plugin: 'com.android.library'
+
+/*************************** bintray start ***************************/
+
+apply plugin: 'com.github.dcendents.android-maven'
+apply plugin: 'com.jfrog.bintray'
+
+// Bintray 相关的信息
+group = rootProject.ext.bintray_groupId // groupId
+version = rootProject.ext.bintray_publishVersion // 版本号
+
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+bintray {
+    user = properties.getProperty("bintray.user") // Bintray 用户名
+    key = properties.getProperty("bintray.apikey") // Bintray ApiKey
+    configurations = ['archives']
+    pkg {
+        // 项目简介
+        repo = rootProject.ext.bintray_repoName // 仓库名称
+        userOrg = rootProject.ext.bintray_userOrg // 用户名
+        name =  rootProject.ext.bintray_groupId // 项目名称
+        desc = rootProject.ext.bintray_project_desc // 项目描述
+        issueTrackerUrl = rootProject.ext.bintray_issueTrackerUrl // issue 网址
+        websiteUrl = rootProject.ext.bintray_website // git 网址
+        vcsUrl = rootProject.ext.bintray_gitUrl // git 网址
+        licenses = rootProject.ext.bintray_licenses // 协议
+        labels = rootProject.ext.bintray_labels // 标签
+        publish = true // 是否是公开项目
+        version {
+            name = rootProject.ext.bintray_publishVersion // 版本号 1.0.0
+            desc = rootProject.ext.bintray_version_desc // 版本描述
+            released = new Date()
+            vcsTag = 'v' + rootProject.ext.bintray_publishVersion // v1.0.0
+            attributes = rootProject.ext.bintray_attributes
+        }
+    }
+}
+
+install {
+    repositories.mavenInstaller {
+        // 生成pom.xml和参数
+        pom.project {
+            packaging rootProject.ext.bintray_packaging
+            name rootProject.ext.bintray_artifactId// 项目名称
+            description rootProject.ext.bintray_project_desc // 项目描述
+            url rootProject.ext.bintray_website // 项目主页
+
+            // 软件开源协议，一般都是Apache License2.0
+            licenses {
+                license {
+                    name 'The Apache Software License, Version 2.0'
+                    url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                }
+            }
+
+            //填写开发者基本信息
+            developers {
+                developer {
+                    id rootProject.ext.bintray_developer_id
+                    name rootProject.ext.bintray_developer_name
+                    email rootProject.ext.bintray_developer_email
+                }
+            }
+
+            scm {
+                connection rootProject.ext.bintray_gitUrl // Git仓库地址
+                developerConnection rootProject.ext.bintray_gitUrl // Git仓库地址
+                url rootProject.ext.bintray_website // 项目主页
+            }
+        }
+    }
+}
+
+// 生成jar包的task
+task sourcesJar(type: Jar) {
+    from android.sourceSets.main.java.srcDirs
+    classifier = 'sources'
+}
+
+// 生成jarDoc的task
+task javadoc(type: Javadoc) {
+    failOnError false // 忽略注释语法错误，如果用jdk1.8你的注释写的不规范就编译不过
+    source = android.sourceSets.main.java.srcDirs
+    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
+}
+
+// 生成javaDoc的jar
+task javadocJar(type: Jar, dependsOn: javadoc) {
+    classifier = 'javadoc'
+    from javadoc.destinationDir
+}
+
+artifacts {
+//    archives javadocJar
+    archives sourcesJar
+}
+
+/*************************** bintray end ***************************/
+
+def support = rootProject.ext.commonDependencies
+def annotation = rootProject.ext.annotationProcessor
+
+android {
+    compileSdkVersion rootProject.compileSdkVersion
+
+    defaultConfig {
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
+        versionCode rootProject.versionCode
+        versionName rootProject.versionName
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            consumerProguardFiles 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    support.each { k, v -> api v }
+    annotation.each { k, v -> annotationProcessor v }
+}
